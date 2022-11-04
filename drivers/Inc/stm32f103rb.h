@@ -61,7 +61,8 @@
  */
 #define I2C1_BASEADDR			(APB1PERIPH_BASE + 0x5400)
 #define I2C2_BASEADDR			(APB1PERIPH_BASE + 0x5800)
-
+#define SPI2_BASEADDR			(APB1PERIPH_BASE + 0x3800)
+#define SPI3_BASEADDR			(APB1PERIPH_BASE + 0x3C00)
 
 
 /*
@@ -108,6 +109,19 @@ typedef struct
 
 typedef struct
 {
+	__vo uint32_t CR[2];
+	__vo uint32_t SR;
+	__vo uint32_t DR;
+	__vo uint32_t CRCPR;
+	__vo uint32_t RXCRCR;
+	__vo uint32_t TXCRCR;
+	__vo uint32_t I2SCFGR;
+	__vo uint32_t I2SPR;
+}SPI_RegDef_t;
+
+
+typedef struct
+{
 	__vo uint32_t CR;				/*	Clock control register					Address offset:0x00	 */
 	__vo uint32_t CFGR;				/*	Clock configuration register			Address offset:0x04	 */
 	__vo uint32_t CIR;				/*	Clock interrupt register				Address offset:0x08	 */
@@ -145,6 +159,7 @@ typedef struct {
 /*
  * Peripheral definitions (Peripheral base addresses typecasted to xxx_RegDef_t structure)
  */
+
 #define GPIOA 						((GPIO_RegDef_t*)GPIOA_BASEADDR)
 //GPIO_RegDef_t *pGPIOA = GPIOA;
 #define GPIOB 						((GPIO_RegDef_t*)GPIOB_BASEADDR)
@@ -159,6 +174,11 @@ typedef struct {
 #define EXTI						((EXTI_RegDef_t*)EXTI_BASEADDR)
 
 #define AFIO						((AFIO_RegDef_t*)AFIO_BASEADDR)
+
+#define SPI1						((SPI_RegDef_t*)SPI1_BASEADDR)
+#define SPI2						((SPI_RegDef_t*)SPI2_BASEADDR)
+#define SPI3						((SPI_RegDef_t*)SPI3_BASEADDR)
+
 
 
 /*
@@ -184,7 +204,8 @@ typedef struct {
  * Clock Enable Macros for SPI peripherals
  */
 #define SPI1_PCLK_EN()				(RCC->APB2ENR |= (1<<12))
-
+#define SPI2_PCLK_EN()				(RCC->APB1ENR |= (1<<14))
+#define SPI3_PCLK_EN()				(RCC->APB1ENR |= (1<<15))
 
 /*
  * Clock Enable Macros for USART peripherals
@@ -274,6 +295,8 @@ typedef struct {
 #define IRQNumber_EXTI9_5				23
 #define IRQNumber_EXTI15_10				40
 
+
+
 /*
  * macros for all the possible priority levels
  */
@@ -310,5 +333,6 @@ typedef struct {
 
 
 #include "stm32f103rb_gpio_driver.h"
+#include "stm32f103rb_spi_driver.h"
 
 #endif /* INC_STM32F103RB_H_ */

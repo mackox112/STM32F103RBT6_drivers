@@ -1,6 +1,6 @@
+"Src/main.o"
 "Src/syscalls.o"
 "Src/sysmem.o"
 "Startup/startup_stm32f103rbtx.o"
-"drivers/Src/gpio_led.o"
 "drivers/Src/stm32f103rb_gpio_driver.o"
-"drivers/Src/test_practice.o"
+"drivers/Src/stm32f103rb_spi_driver.o"

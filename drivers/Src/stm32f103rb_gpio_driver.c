@@ -182,7 +182,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle) // TO ReDO - improvement needed
 		AFIO_PCLK_EN();
 		AFIO->EXTICR[temp1] = portcode << temp2*4;
 
-		// 3. Enable the exti interrupt delivery using IMR
+		// 3. Enable the exti interrupt delivery using IMR (Interrupt Mask Register)
 
 		EXTI->IMR |= (1<<pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	}
@@ -273,7 +273,7 @@ void GPIO_IRQInterruptConfig (uint8_t IRQNumber, uint8_t EnorDi){
 			//program ISER0 register
 			*NVIC_ISER0 |= (1<< IRQNumber);
 
-		}else if (IRQNumber >31 && IRQNumber <= 63)
+		}else if (IRQNumber >31 && IRQNumber < 64)
 		{
 			//program ISER1 register
 			*NVIC_ISER1 |= (1<< (IRQNumber % 32));

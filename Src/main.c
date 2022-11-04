@@ -26,10 +26,6 @@
 
 #include "stm32f103rb.h"
 
-void delay(void)
-{
-	for (uint32_t i=0; i<500000/2; i++);
-}
 
 
 int main(void)
