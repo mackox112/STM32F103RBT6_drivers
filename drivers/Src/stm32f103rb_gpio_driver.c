@@ -68,6 +68,7 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 
 //Init and De-init
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle) // TO ReDO - improvement needed
+// GPIO_Init to Redo
 {
 	uint8_t temp, temp2 = 0;	//temp. register
 
